@@ -1,0 +1,7 @@
+.terraform/
+terraform.tfstate
+.terraformrc
+terraform.tfstate.backup
+*.pem
+env/production/provider.tf
+env/development/provider.tf
