@@ -7,3 +7,13 @@ variable "wp-vpc" {
   description = "VPC WP config"
   type = map(string)
 }
+
+variable "wp-s3" {
+  description = "S3 config for WP"
+  type = map(string)
+}
+
+variable "wp-s3-iam" {
+  description = "IAM user for S3"
+  type = map(string)
+}

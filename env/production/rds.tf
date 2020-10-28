@@ -18,7 +18,6 @@ module "wp-rds" {
   iam_database_authentication_enabled = false
   enabled_cloudwatch_logs_exports     = ["audit", "error", "slowquery"]
   username                            = "admin"
-  password                            = <your_secure_pass>
   vpc_security_group_ids              = [aws_security_group.allow_traffic.id]
 }
 
