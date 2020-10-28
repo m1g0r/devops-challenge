@@ -11,3 +11,7 @@ wp-s3 = {
 wp-s3-iam = {
   "name" = "wp-s3"
 }
+
+wp-ecs-config = {
+  "name" = "wp"
+}

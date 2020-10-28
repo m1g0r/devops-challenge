@@ -17,3 +17,8 @@ variable "wp-s3-iam" {
   description = "IAM user for S3"
   type = map(string)
 }
+
+variable "wp-ecs-config" {
+  description = "Configmap for ECS cluster"
+  type = map(string)
+}
