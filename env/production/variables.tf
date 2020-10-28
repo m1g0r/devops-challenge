@@ -22,3 +22,8 @@ variable "wp-ecs-config" {
   description = "Configmap for ECS cluster"
   type = map(string)
 }
+
+variable "wp-app" {
+  description = "Configmap for WP application"
+  type = map(string)
+}

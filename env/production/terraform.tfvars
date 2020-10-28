@@ -15,3 +15,9 @@ wp-s3-iam = {
 wp-ecs-config = {
   "name" = "wp"
 }
+
+wp-app = {
+  "name" = "wordpress"
+  "port" = 80
+  "desired_count" = 1
+}
