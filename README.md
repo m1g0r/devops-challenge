@@ -2,6 +2,29 @@
 ## Owerview
 In this document, I would like to describe the Core components to building a high-available, scalable, fault tolerance, and secure infrastructure on AWS Cloud for WordPress using the best approaches and practices.
 
+## Proposal
+### Infrastructure as Code
+Infrastructure as Code has emerged as a best practice for automating the provisioning of infrastructure services. For this purpose, I suggest using the Terraform CLI. Terraform is an open source provisioning tool from HashiCorp (more information at http://terraform.io​ ). It is used for building, changing and versioning infrastructure, safely and efficiently. Terraform will manage the state of our environment on AWS. That means, if something is not in conformity, it will try to fix keeping as close as possible to the desired state.
+
+### Infrastructure Core components:
+#### AWS ECS
+As we are going to make our environment secure, scalable, and high available, we’ve
+chosen ​ AWS Elastic Container Service​ (ECS) as a docker orchestration system.
+##### Benefits:
+- Easy scalability and infrastructure management
+- AWS Fargate support (a serverless compute engine for containers)
+- AWS Elastic Load Balancing support
+
+#### MySQL Databases
+As a relational database, I recommend to usage ​ Amazon Aurora​ . It is a MySQL-compatible relational database built for the cloud, that combines the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases.
+##### Benefits:
+- Automated Backups
+- Offers managed updates
+- No hardware maintenance needed
+- Simplified scaling in comparison to on-premise databases
+- Simplified disaster recovery and automatic failover
+- Automated additional storage allocation
+
 ## Requirements
 
 | Name | Version |
