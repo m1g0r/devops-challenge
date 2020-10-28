@@ -37,3 +37,8 @@ output "WP_S3_IAM_SECRET" {
   description = "AWS Secret for WP S3 IAM user"
   value       = module.wp_s3_iam.this_iam_access_key_secret
 }
+
+output "WP_ALB_DNS" {
+  description = "AWS ALB DNS name"
+  value       = aws_alb.wordpress.dns_name
+}
