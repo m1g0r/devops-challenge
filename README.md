@@ -28,6 +28,7 @@ As a relational database for WordPress, I recommend to usage â€‹ Amazon Auroraâ€
 #### Amazon Simple Storage Service (Amazon S3)
 For store WordPress static resources we can usage Amazon S3 bucket. Is an object storage service that offers industry-leading scalability, data availability, security, and performance.
 ##### Benefits:
+- Industry-leading performance, scalability, availability, and durability
 - Wide range of cost-effective storage classes
 - Easily manage data and access controls
 - Availability of plugins for integration with WordPress

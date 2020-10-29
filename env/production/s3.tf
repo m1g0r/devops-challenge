@@ -14,6 +14,20 @@ data "aws_iam_policy_document" "wp_bucket_policy" {
       "arn:aws:s3:::${var.wp-s3["name"]}/*",
     ]
   }
+  statement {
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+
+    actions = [
+      "s3:GetObject",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${var.wp-s3["name"]}/*",
+    ]
+  }
 }
 
 module "wp_static_resources_s3" {
