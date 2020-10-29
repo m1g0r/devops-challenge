@@ -81,10 +81,15 @@ terraform apply
 | AWS region | AWS Region |
 | VPC id | AWS VPC id |
 | RDS cluster endpoint | The cluster endpoint to connect |
-| RDS cluster username | The RDS cluster username to connect |
-| RDS cluster password | The RDS cluster password to connect |
+| RDS cluster username | The RDS cluster username |
+| RDS cluster password | The RDS cluster password |
 | AWS S3 bucket | AWS S3 bucket for static resources |
-| AWS IAM KEY | AWS IAM KEY for access to S3 bucket for static resources |
-| AWS IAM SECRET | AWS IAM SECRET for access to S3 bucket for static resources |
+| AWS IAM KEY | AWS IAM KEY for access to S3 bucket for static resources (for WordPress plugin) |
+| AWS IAM SECRET | AWS IAM SECRET for access to S3 bucket for static resources (for WordPress plugin) |
 | AWS ALB DNS name | AWS ALB DNS record  / WordPress host |
 
+### Terraform outputs after apply
+![Terraform output](img/output.jpg?raw=true "Title")
+
+### WordPress site after apply (available by ALB DNS name after apply)
+![WordPress](img/wp.jpg?raw=true "Title")
