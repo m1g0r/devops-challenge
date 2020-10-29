@@ -9,14 +9,14 @@ Infrastructure as Code has emerged as a best practice for automating the provisi
 ### Infrastructure Core components:
 #### AWS ECS
 As we are going to make our environment secure, scalable, and high available, we’ve
-chosen ​ AWS Elastic Container Service​ (ECS) as a docker orchestration system. The ECS cluster should be built on the basis of an autoscaling group that will allow a flexible response (horizontal scale EC2 in cluster) to loads during peaks and save resources when the load is small.
+chosen ​ AWS Elastic Container Service​ (ECS) as a docker orchestration system. The ECS cluster should be built on the basis of an autoscaling group that will allow a flexible response (horizontal scale wordpress service and EC2 instances in the cluster) to loads during peaks and save resources when the load is small. Also, in this case, our site will be hosted in multiple instances on multiple servers that are hosted in different availability zones. This approach minimizes the risk of our service becoming inaccessible to our castomers.
 ##### Benefits:
 - Easy scalability and infrastructure management
 - AWS Fargate support (a serverless compute engine for containers)
 - AWS Elastic Load Balancing support
 
 #### MySQL Databases
-As a relational database for WordPress, I recommend to usage ​ Amazon Aurora​ . It is a MySQL-compatible relational database built for the cloud, that combines the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases.
+As a relational database for WordPress, I recommend to usage ​ Amazon Aurora​ . It is a MySQL-compatible relational database built for the cloud, that combines the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases. If you use a replica, we guarantee stable access to our service to the database. In case of unavailability of the main server, the replica automatically takes over the responsibilities of the master and we do not lose information and continue to serve our users. It is also possible to make our service more accessible at high loads by using a replica reader. Out of the box, WordPress does not have such functionality, but after [installing the plugin and additional settings](https://pantheon.io/docs/hyperdb), everything should work. In this example, the replicas are automatically scaled as the load on CPU is increased (replica_scale_cpu = 80).
 ##### Benefits:
 - Automated Backups
 - Offers managed updates
@@ -26,7 +26,7 @@ As a relational database for WordPress, I recommend to usage ​ Amazon Aurora�
 - Automated additional storage allocation
 
 #### Amazon Simple Storage Service (Amazon S3)
-For store WordPress static resources we can usage Amazon S3 bucket. Is an object storage service that offers industry-leading scalability, data availability, security, and performance.
+For store WordPress static resources we can usage Amazon S3 bucket. Is an object storage service that offers industry-leading scalability, data availability, security, and performance. Using an AWS S3 bucket will allow you to transfer the load on the return of static resources from the server to the AWS S3 bucket side. Also, we will have an opportunity to scale our WordPress in several copies without problems with display of images on a site as all copies will have one data source. To integrate AWS 3S bucket to WordPress we can use [WordPress plugin](https://wordpress.org/plugins/amazon-s3-and-cloudfront/)
 ##### Benefits:
 - Industry-leading performance, scalability, availability, and durability
 - Wide range of cost-effective storage classes
@@ -88,6 +88,3 @@ terraform apply
 | AWS IAM SECRET | AWS IAM SECRET for access to S3 bucket for static resources |
 | AWS ALB DNS name | AWS ALB DNS record  / WordPress host |
 
-## Notes
-[WordPress reader](https://pantheon.io/docs/hyperdb)
-[WordPress CDN and S3](https://blog.lawrencemcdaniel.com/integrating-aws-s3-cloudfront-with-wordpress-2/)
