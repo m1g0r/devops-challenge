@@ -91,5 +91,8 @@ terraform apply
 ### Terraform outputs after apply
 ![Terraform output](img/output.jpg?raw=true "Title")
 
+### WordPress database settings
+All database connection parameters (host, username, password, database name) are automatically inserted into [aws_ecs_task_definition](env/production/wordpress.tf) through the docker environment variables
+
 ### WordPress site after apply (available by ALB DNS name after apply)
 ![WordPress](img/wp.jpg?raw=true "Title")

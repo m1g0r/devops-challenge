@@ -7,8 +7,20 @@ resource "aws_ecs_task_definition" "wordpress" {
     "image": "wordpress:latest",
     "environment": [
       {
-        "name": "NODE_ENV",
-        "value": "TEST"
+        "name": "WORDPRESS_DB_HOST",
+        "value": "${module.wp-rds.this_rds_cluster_endpoint}"
+      },
+      {
+        "name": "WORDPRESS_DB_USER",
+        "value": "${module.wp-rds.this_rds_cluster_master_username}"
+      },
+      {
+        "name": "WORDPRESS_DB_PASSWORD",
+        "value": "${module.wp-rds.this_rds_cluster_master_password}"
+      },
+      {
+        "name": "WORDPRESS_DB_NAME",
+        "value": "wordpress"
       }
     ],
     "memory": 256,
@@ -56,7 +68,7 @@ resource "aws_alb_target_group" "wordpress" {
   health_check {
     path               = "/"
     timeout            = 3
-    matcher            = "200"
+    matcher            = "200,301"
   }
 }
 
