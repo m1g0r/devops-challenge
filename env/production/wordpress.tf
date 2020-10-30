@@ -68,7 +68,7 @@ resource "aws_alb_target_group" "wordpress" {
   health_check {
     path               = "/"
     timeout            = 3
-    matcher            = "200"
+    matcher            = "200,301"
   }
 }
 
