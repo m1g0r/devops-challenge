@@ -45,7 +45,7 @@ resource "aws_security_group" "allow_all_http_https" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   tags = {
     "Terraform"   = "true"
     "Environment" = "prod"

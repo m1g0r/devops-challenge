@@ -1,10 +1,9 @@
 terraform {
-  backend "s3" {
-    bucket = "wp.devchallenge.terraform"
-    key    = "env/production/terraform.tfstate"
-    region = "eu-central-1"
+  backend "remote" {
+    organization = "WP-production"
 
-    encrypt = "true"
-    acl = "private"
+    workspaces {
+      name = "DevOps-DEV-Challenge-XVII"
+    }
   }
 }

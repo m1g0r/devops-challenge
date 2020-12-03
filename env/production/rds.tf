@@ -4,7 +4,7 @@ module "wp-rds" {
   name                                = "wp-rds"
   engine                              = "aurora-mysql"
   engine_version                      = "5.7.12"
-  subnets                             = [module.wp-vpc.private_subnets[0],module.wp-vpc.private_subnets[1],module.wp-vpc.private_subnets[2]]
+  subnets                             = [module.wp-vpc.private_subnets[0], module.wp-vpc.private_subnets[1], module.wp-vpc.private_subnets[2]]
   vpc_id                              = module.wp-vpc.vpc_id
   replica_scale_enabled               = true
   replica_scale_cpu                   = 80

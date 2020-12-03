@@ -1,6 +1,6 @@
 wp-vpc = {
   "name" = "wp-vpc"
-  "cidr" = "10.0.0.0/16" 
+  "cidr" = "10.0.0.0/16"
 }
 
 wp-s3 = {
@@ -17,7 +17,7 @@ wp-ecs-config = {
 }
 
 wp-app = {
-  "name" = "wordpress"
-  "port" = 80
+  "name"          = "wordpress"
+  "port"          = 80
   "desired_count" = 1
 }
