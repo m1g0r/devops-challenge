@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "wordpress" {
-  family = var.wp-app["name"]
+  family                = var.wp-app["name"]
   container_definitions = <<DEFINITION
 [
   {
@@ -42,10 +42,10 @@ DEFINITION
 }
 
 resource "aws_ecs_service" "wordpress" {
-  name            = var.wp-app["name"]
-  cluster         = module.ecs.this_ecs_cluster_id
-  task_definition = aws_ecs_task_definition.wordpress.family
-  desired_count   = var.wp-app["desired_count"]
+  name                               = var.wp-app["name"]
+  cluster                            = module.ecs.this_ecs_cluster_id
+  task_definition                    = aws_ecs_task_definition.wordpress.family
+  desired_count                      = var.wp-app["desired_count"]
   deployment_minimum_healthy_percent = 100
   deployment_maximum_percent         = 200
   ordered_placement_strategy {
@@ -66,17 +66,17 @@ resource "aws_alb_target_group" "wordpress" {
   vpc_id               = module.wp-vpc.vpc_id
   deregistration_delay = 30
   health_check {
-    path               = "/"
-    timeout            = 3
-    matcher            = "200,301"
+    path    = "/"
+    timeout = 3
+    matcher = "200,301"
   }
 }
 
 resource "aws_alb" "wordpress" {
   name            = var.wp-app["name"]
   internal        = false
-  subnets         = [module.wp-vpc.public_subnets[0],module.wp-vpc.public_subnets[1],module.wp-vpc.public_subnets[2]]
-  security_groups = [aws_security_group.allow_all_http_https.id,aws_security_group.allow_traffic.id]
+  subnets         = [module.wp-vpc.public_subnets[0], module.wp-vpc.public_subnets[1], module.wp-vpc.public_subnets[2]]
+  security_groups = [aws_security_group.allow_all_http_https.id, aws_security_group.allow_traffic.id]
 }
 
 resource "aws_alb_listener" "wordpress-http" {
