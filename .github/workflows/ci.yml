@@ -26,8 +26,15 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const output = `Terraform Format and Style: \`${{ steps.fmt.outcome }}\`
-            Terraform Initialization: \`${{ steps.init.outcome }}\``
+            const status = new String(\`${{ steps.fmt.outcome }}\`+\`${{ steps.init.outcome }}\`)
+            console.log(eval(status));
+            if (status.includes('failure')) {
+              const output = `Terraform Format and Style: \`${{ steps.fmt.outputs.stdout }}\`
+              Terraform Initialization: \`${{ steps.init.outputs.stdout }}\``
+            } else {
+              const output = `Terraform Format and Style: \`${{ steps.fmt.outcome }}\`
+              Terraform Initialization: \`${{ steps.init.outcome }}\``
+            }
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -36,6 +43,6 @@ jobs:
               body: output
             })
 
-      - name: Terraform fmt status
-        if: steps.fmt.outcome == 'failure'
+      - name: Terraform status
+        if: ${{ (steps.fmt.outcome == 'failure') || (steps.init.outcome == 'failure') }}
         run: exit 1
