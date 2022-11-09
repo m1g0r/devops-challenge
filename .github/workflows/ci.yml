@@ -1,0 +1,23 @@
+name: Continuous Integration
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+jobs:
+  TerraformCI:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 0.12
+
+      - name: Terraform fmt check
+        id: fmt
+        run: terraform fmt -check -diff -recursive
+
+      - name: Terraform Init
+        id: init
+        run: terraform init -backend=false
