@@ -25,8 +25,8 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const output = `Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            Terraform Initialization 🤖\`${{ steps.init.outcome }}\``
+            const output = `Terraform Format and Style: \`${{ steps.fmt.outcome }}\`
+            Terraform Initialization: \`${{ steps.init.outcome }}\``
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
