@@ -23,10 +23,16 @@ jobs:
         run: terraform init -backend=false
 
       - uses: actions/github-script@v6
+        env:
+          FMT: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
           script: |
             const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
                             #### Terraform Initialization 🤖\`${{ steps.init.outcome }}\``
+
+            <details><summary>Show fmt check</summary>
+            \`\`\`${process.env.FMT}\`\`\`
+            </details>
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
