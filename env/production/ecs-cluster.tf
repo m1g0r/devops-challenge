@@ -42,7 +42,7 @@ module "this" {
 
   # Auto scaling group
   asg_name                  = var.wp-ecs-config["name"]
-  vpc_zone_identifier       =    module.wp-vpc.private_subnets
+  vpc_zone_identifier       = module.wp-vpc.private_subnets
   health_check_type         = "EC2"
   min_size                  = 1
   max_size                  = 2
@@ -64,7 +64,7 @@ module "this" {
 }
 
 data "template_file" "user_data" {
-  template =    file("templates/user-data.sh")
+  template = file("templates/user-data.sh")
 
   vars = {
     cluster_name = var.wp-ecs-config["name"]
