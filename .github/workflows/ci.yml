@@ -27,7 +27,7 @@ jobs:
         with:
           script: |
             const status = new String(\`${{ steps.fmt.outcome }}\`+\`${{ steps.init.outcome }}\`)
-            console.log(eval(status));
+            # console.log(eval(status));
             # if (status.includes('failure')) {
             #   const output = `Terraform Format and Style: \`${{ steps.fmt.outputs.stdout }}\`
             #   Terraform Initialization: \`${{ steps.init.outputs.stdout }}\``
