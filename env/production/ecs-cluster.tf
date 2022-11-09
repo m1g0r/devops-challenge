@@ -5,7 +5,7 @@ module "ecs" {
 }
 
 module "ec2_profile" {
-  source =     "terraform-aws-modules/ecs/aws//modules/ecs-instance-profile"
+  source = "terraform-aws-modules/ecs/aws//modules/ecs-instance-profile"
   name   = var.wp-ecs-config["name"]
 }
 
@@ -16,7 +16,7 @@ data "aws_ami" "amazon_linux_ecs" {
 
   filter {
     name   = "name"
-    values =     ["amzn-ami-*-amazon-ecs-optimized"]
+    values = ["amzn-ami-*-amazon-ecs-optimized"]
   }
 
   filter {
@@ -41,11 +41,11 @@ module "this" {
   user_data            = data.template_file.user_data.rendered
 
   # Auto scaling group
-  asg_name            = var.wp-ecs-config["name"]
+  asg_name                  = var.wp-ecs-config["name"]
   vpc_zone_identifier       = module.wp-vpc.private_subnets
   health_check_type         = "EC2"
   min_size                  = 1
-  max_size         = 2
+  max_size                  = 2
   desired_capacity          = 1
   wait_for_capacity_timeout = 0
 
