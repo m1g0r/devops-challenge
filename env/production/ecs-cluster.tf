@@ -41,7 +41,7 @@ module "this" {
   user_data            = data.template_file.user_data.rendered
 
   # Auto scaling group
-  asg_name                  = var.wp-ecs-config["name"]
+  asg_name                  =   var.wp-ecs-config["name"]
   vpc_zone_identifier       = module.wp-vpc.private_subnets
   health_check_type         = "EC2"
   min_size                  = 1
